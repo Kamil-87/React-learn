@@ -1,21 +1,30 @@
 // import { Test } from "@components/app"
-import React from "react"
+import React, {useState} from "react"
 import ReactDOM from "react-dom"
 // import styles from "./index.module.css"
 
 import "./index.css"
 
-const messages = ["Hello"]
+
 
 const Messages = () => {
+  const [messages, setMessages] = useState(['Hello'])
+  const [value, setValue] = useState('')
+
+  function handleInput (event) {
+    setValue(event.target.value)
+  }
+
+  function handleClick () {
+    setMessages([...messages, value])
+  }
+
   return (
     <div>
-      <h1>messages</h1>
-      {messages.map((message) => (
-        <p key={messages}>{message}</p>
-      ))}
-      <input placeholder="Введите сообщение" />
-      <button>Отправить</button>
+      <h1>Messages</h1>
+      {messages.map((message, index) => (<p key={index}>{message}</p>))}
+      <input placeholder="Введите сообщение" value={value} onChange={handleInput} />
+      <button onClick={handleClick}>Отправить</button>
     </div>
   )
 }
