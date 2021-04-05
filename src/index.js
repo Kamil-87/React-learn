@@ -1,7 +1,7 @@
+import { MessageList, Layout, ChatList, Header } from "@components"
 import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 import React from "react"
 import ReactDOM from "react-dom"
-import { MessageList, Layout, ChatList, Header } from "./components"
 
 import "./index.module.css"
 
