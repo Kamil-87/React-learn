@@ -2,9 +2,8 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
+// const CopyWebpackPlugin = require("copy-webpack-plugin")
 const OptimizeCssAssetWebpackPlugin = require("optimize-css-assets-webpack-plugin")
-const TerserWebpackPlugin = require("terser-webpack-plugin")
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin")
 
 const isDevelopment = process.env.NODE_ENV === "development"
@@ -27,9 +26,9 @@ module.exports = {
   optimization: isDevelopment
     ? {}
     : {
-        minimize: true,
-        minimizer: [new OptimizeCssAssetWebpackPlugin()],
-      },
+      minimize: true,
+      minimizer: [new OptimizeCssAssetWebpackPlugin()],
+    },
   plugins: [
     new HtmlWebpackPlugin({
       title: "hello webpack",
@@ -48,36 +47,36 @@ module.exports = {
       ignoreOrder: false,
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      // просто скопирует код из папки в папку без изменений
-      patterns: [
-        {
-          from: path.resolve(__dirname, "src/assets"),
-          to: path.resolve(__dirname, "dist/assets"),
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   // просто скопирует код из папки в папку без изменений
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "src/assets"),
+    //       to: path.resolve(__dirname, "dist/assets"),
+    //     },
+    //   ],
+    // }),
     isDevelopment
       ? () => ({})
       : new ImageMinimizerPlugin({
-          minimizerOptions: {
-            plugins: [
-              ["gifsicle", { interlaced: true }],
-              ["jpegtran", { progressive: true }],
-              ["optipng", { optimizationLevel: 5 }],
-              [
-                "svgo",
-                {
-                  plugins: [
-                    {
-                      removeViewBox: false,
-                    },
-                  ],
-                },
-              ],
+        minimizerOptions: {
+          plugins: [
+            ["gifsicle", { interlaced: true }],
+            ["jpegtran", { progressive: true }],
+            ["optipng", { optimizationLevel: 5 }],
+            [
+              "svgo",
+              {
+                plugins: [
+                  {
+                    removeViewBox: false,
+                  },
+                ],
+              },
             ],
-          },
-        }),
+          ],
+        },
+      }),
   ],
   module: {
     rules: [
@@ -92,11 +91,11 @@ module.exports = {
           isDevelopment
             ? "style-loader"
             : {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  publicPath: path.resolve(__dirname, "dist/css"),
-                },
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: path.resolve(__dirname, "dist/css"),
               },
+            },
           {
             loader: "css-loader",
             options: {
@@ -111,13 +110,13 @@ module.exports = {
         use: [
           isDevelopment
             ? // Creates `style` nodes from JS strings
-              "style-loader"
+            "style-loader"
             : {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                  publicPath: path.resolve(__dirname, "dist/css"),
-                },
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: path.resolve(__dirname, "dist/css"),
               },
+            },
           {
             // Translates CSS into CommonJS
             loader: "css-loader",

@@ -3,6 +3,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 import React from "react"
 import ReactDOM from "react-dom"
 
+import "./index.css"
 import "./index.module.css"
 
 const dark = {
