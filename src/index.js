@@ -1,6 +1,23 @@
+import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 import React from "react"
 import ReactDOM from "react-dom"
-import "./index.module.css"
-import {MessageField} from "./MessageField"
+import { MessageList, Layout, ChatList, Header } from "./components"
 
-ReactDOM.render(<MessageField title={'Messenger'} />, document.querySelector('#root'))
+import "./index.module.css"
+
+const dark = {
+  color: "red",
+}
+
+const theme = createMuiTheme(dark)
+
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+      <Layout
+          header={<Header />}
+          chats={<ChatList />}
+          messages={<MessageList />}
+      />
+    </ThemeProvider>,
+    document.getElementById("root"),
+)
