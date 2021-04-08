@@ -1,0 +1,17 @@
+.left {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #000000;
+}
+
+.burger {
+  margin: 10px;
+  padding: 10px;
+  color: rgba(255, 255, 255, .7);
+  cursor: pointer;
+}
+
+.burger:hover {
+  color: rgba(255, 255, 255, 1);
+}
