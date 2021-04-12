@@ -6,7 +6,7 @@ export class Layout extends Component {
   static propTypes = {
     header: PropTypes.node.isRequired,
     chats: PropTypes.node.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   }
 
   render() {

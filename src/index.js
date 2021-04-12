@@ -4,9 +4,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
-import "./index.css"
-import "./index.module.css"
-
+import "./global.css"
 
 const dark = {
   color: "red",

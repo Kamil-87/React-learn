@@ -18,15 +18,6 @@ const StyledInput = withStyles(() => {
 })(Input)
 
 export class MessageList extends Component {
-
-  state = {
-    messages: [
-      {author: 'bot', value: 'Привет'},
-      {author: 'bot', value: 'Как дела?'},
-    ],
-    value: '',
-  }
-
   ref = createRef()
 
   sendMessage = ({ author, value }) => {
@@ -57,16 +48,16 @@ export class MessageList extends Component {
   }
 
   componentDidUpdate(_, state) {
-    const { messages } = this.state
-
-    const lastMessage = messages[messages.length - 1]
-
-    if (lastMessage.author === "User" && state.messages !== messages) {
-      setTimeout(() => {
-        this.sendMessage({ author: "bot", value: "Не приставай ко мне?" })
-      }, 500)
-    }
-    this.handleScrollBottom()
+    // const { messages } = this.state
+    //
+    // const lastMessage = messages[messages.length - 1]
+    //
+    // if (lastMessage.author === "User" && state.messages !== messages) {
+    //   setTimeout(() => {
+    //     this.sendMessage({ author: "bot", value: "Не приставай ко мне?" })
+    //   }, 500)
+    // }
+    // this.handleScrollBottom()
   }
 
   render() {
