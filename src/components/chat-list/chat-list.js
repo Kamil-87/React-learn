@@ -1,9 +1,16 @@
-import { List } from "@material-ui/core";
-import { Component } from "react";
-import { Link } from "react-router-dom";
-import { Chat } from "./chat";
+import { List } from "@material-ui/core"
+import PropTypes from "prop-types"
+import { Component } from "react"
+import { Link } from "react-router-dom"
+import { ChatComponent } from "./chat-component"
 
 export class ChatList extends Component {
+  static propTypes = {
+    conversations: PropTypes.any,
+    match: PropTypes.any,
+  }
+
+
   render() {
     const {
       conversations,
@@ -16,7 +23,7 @@ export class ChatList extends Component {
       <List component="nav">
         {conversations.map((chat) => (
           <Link key={chat.title} to={`/chat/${chat.title}`}>
-            <Chat selected={chat.title === chatId} chat={chat} />
+            <ChatComponent selected={chat.title === chatId} chat={chat} />
           </Link>
         ))}
       </List>

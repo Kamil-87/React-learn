@@ -47,18 +47,18 @@ export class MessageList extends Component {
     }
   }
 
-  componentDidUpdate(_, state) {
-    // const { messages } = this.state
-    //
-    // const lastMessage = messages[messages.length - 1]
-    //
-    // if (lastMessage.author === "User" && state.messages !== messages) {
-    //   setTimeout(() => {
-    //     this.sendMessage({ author: "bot", value: "Не приставай ко мне?" })
-    //   }, 500)
-    // }
-    // this.handleScrollBottom()
-  }
+  // componentDidUpdate(_, state) {
+  //   const { messages } = this.state
+  //
+  //   const lastMessage = messages[messages.length - 1]
+  //
+  //   if (lastMessage.author === "User" && state.messages !== messages) {
+  //     setTimeout(() => {
+  //       this.sendMessage({ author: "bot", value: "Не приставай ко мне?" })
+  //     }, 500)
+  //   }
+  //   this.handleScrollBottom()
+  // }
 
   render() {
     const { messages, value } = this.state

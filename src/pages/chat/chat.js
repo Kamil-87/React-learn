@@ -1,16 +1,22 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
 import {
   Layout,
   Header,
   ChatList,
   MessageList,
-  MessagesNotFound,
+  MessageNotFound,
   MessageProvider,
-} from "../components";
+} from "@components";
+import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 
 
 export class Chat extends Component {
+  static propTypes = {
+    history: PropTypes.any,
+  }
+
+
   componentDidMount() {
     document.addEventListener("keydown", this.listenExistChat);
   }
@@ -22,14 +28,14 @@ export class Chat extends Component {
   listenExistChat = ({ code }) => {
     if (code === "Escape") {
       const { history } = this.props;
-      history.push("/chat");
+      history.push("/chat-component");
     }
   };
 
   render() {
     return (
       <Switch>
-        <Route path={["/chat/:id", "/chat"]}>
+        <Route path={["/chat-component/:id", "/chat-component"]}>
           {(params) => (
             <MessageProvider {...params}>
               {([state, actions]) => {
@@ -47,7 +53,7 @@ export class Chat extends Component {
                       <MessageList {...state} {...actions} />
                     </Route>
                     <Route exact={true} path="/chat">
-                      <MessagesNotFound />
+                      <MessageNotFound />
                     </Route>
                   </Layout>
                 );

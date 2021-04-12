@@ -1,1 +1,1 @@
-export * from "./messages-not-found";
+export * from "./message-not-found";
