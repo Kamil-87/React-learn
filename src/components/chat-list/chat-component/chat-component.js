@@ -6,7 +6,6 @@ import {
 } from "@material-ui/core"
 import { AccountCircle } from "@material-ui/icons";
 import { format } from "date-fns";
-import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styles from "./chat-component.module.css";
 
@@ -22,11 +21,6 @@ const StyledListItem = withStyles(() => ({
 }))(ListItem);
 
 export class ChatComponent extends Component {
-  static propTypes = {
-    chat: PropTypes.any,
-    selected: PropTypes.bool.isRequired,
-    handleListItemClick: PropTypes.func,
-  }
 
   render() {
     const { handleListItemClick, selected, chat } = this.props;

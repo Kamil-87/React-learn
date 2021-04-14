@@ -1,4 +1,4 @@
-import { Component } from "react";
+import {Component} from "react";
 
 export class MessageProvider extends Component {
   state = {
@@ -6,44 +6,45 @@ export class MessageProvider extends Component {
       {
         title: "room1",
         value: "",
-        lastMessage: { author: "User", message: "hi!", createdTs: new Date() },
+        lastMessage: {author: "User", message: "hi!", createdTs: new Date()},
       },
-      { title: "room2", value: "", lastMessage: null },
-      { title: "room3", value: "", lastMessage: null },
+      {title: "room2", value: "", lastMessage: null},
+      {title: "room3", value: "", lastMessage: null},
     ],
     messages: {
-      room1: [{ author: "User", message: "hi!", createdTs: new Date() }],
+      room1: [{author: "User", message: "hi!", createdTs: new Date()}],
     },
   };
 
   handleChangeValue = (value) => {
     const {
-      match: { params },
+      match: {params},
     } = this.props;
+
+    console.log(this.state.conversations)
 
     this.setState({
       conversations: this.state.conversations.map((conversation) =>
         conversation.title === params.id
-          ? { ...conversation, value }
+          ? {...conversation, value}
           : conversation
       ),
     });
   };
 
-  sendMessage = ({ author, message }) => {
+  sendMessage = ({author, message}) => {
     if (!message) {
       return;
     }
 
     const {
-      match: { params },
+      match: {params},
     } = this.props;
-    const { messages, conversations } = this.state;
 
-    const newMessage = { author, message, createdTs: new Date() };
+    const newMessage = {author, message, createdTs: new Date()};
 
     this.setState({
-      conversations: conversations.map((conversation) =>
+      conversations: this.state.conversations.map((conversation) =>
         conversation.title === params.id
           ? {
             ...conversation,
@@ -53,45 +54,19 @@ export class MessageProvider extends Component {
           : conversation
       ),
       messages: {
-        ...messages,
-        [params.id]: [...(messages[params.id] || []), newMessage],
+        ...this.state.messages,
+        [params.id]: [...(this.state.messages[params.id] || []), newMessage],
       },
     });
   };
 
-  componentDidUpdate(_, prevState) {
-    const {
-      match: { params },
-    } = this.props;
-    const { conversations, messages } = this.state;
-
-    if (!params.id) {
-      return;
-    }
-
-    const { lastMessage } = conversations.find(
-      (conversation) => conversation.title === params.id
-    );
-
-    const currentMessages = messages[params.id];
-    const prevMessages = prevState.messages[params.id];
-
-    if (
-      lastMessage?.message !== "Как дела ?" &&
-      currentMessages !== prevMessages
-    ) {
-      setTimeout(() => {
-        this.sendMessage({ author: "Bot", message: "Как дела ?" });
-      }, 500);
-    }
-  }
+  componentDidUpdate() {}
 
   render() {
-    const { children, match } = this.props;
+    const {children, match} = this.props;
+    const {conversations, messages} = this.state;
 
-    const { conversations, messages } = this.state;
-
-    const { id } = match.params ?? {};
+    const {id} = match.params ?? {};
 
     const state = {
       conversations,

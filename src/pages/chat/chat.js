@@ -6,18 +6,12 @@ import {
   MessageNotFound,
   MessageProvider,
 } from "@components";
-import PropTypes from 'prop-types'
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
 
 export class Chat extends Component {
-  static propTypes = {
-    history: PropTypes.any,
-  }
-
-
-  componentDidMount() {
+ componentDidMount() {
     document.addEventListener("keydown", this.listenExistChat);
   }
 

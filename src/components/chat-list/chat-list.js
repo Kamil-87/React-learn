@@ -1,15 +1,9 @@
 import { List } from "@material-ui/core"
-import PropTypes from "prop-types"
-import { Component } from "react"
+import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { ChatComponent } from "./chat-component"
 
 export class ChatList extends Component {
-  static propTypes = {
-    conversations: PropTypes.any,
-    match: PropTypes.any,
-  }
-
 
   render() {
     const {

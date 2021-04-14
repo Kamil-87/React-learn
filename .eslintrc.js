@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     // ESLINT RULES
     // https://eslint.org/docs/rules/
+    "react/prop-types": "off",
     "no-useless-catch": "warn", // TODO: FIX, WAS 8 ERRORS
     "no-prototype-builtins": "off",
     curly: ["error", "multi-line"],

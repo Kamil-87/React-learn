@@ -20,24 +20,9 @@ const StyledInput = withStyles(() => {
 export class MessageList extends Component {
   ref = createRef()
 
-  sendMessage = ({ author, value }) => {
-    const { messages } = this.state
-
-    this.setState({
-      messages: [...messages, { author, value }],
-      value: "",
-    })
-  }
-
-  handleChangeInput = ({ target }) => {
-    this.setState({
-      value: target.value,
-    })
-  }
-
   handlePressInput = ({ code }) => {
     if (code === "Enter") {
-      this.sendMessage({ author: "User", value: this.state.value })
+      this.handleSendMessage()
     }
   }
 
@@ -47,21 +32,19 @@ export class MessageList extends Component {
     }
   }
 
-  // componentDidUpdate(_, state) {
-  //   const { messages } = this.state
-  //
-  //   const lastMessage = messages[messages.length - 1]
-  //
-  //   if (lastMessage.author === "User" && state.messages !== messages) {
-  //     setTimeout(() => {
-  //       this.sendMessage({ author: "bot", value: "Не приставай ко мне?" })
-  //     }, 500)
-  //   }
-  //   this.handleScrollBottom()
-  // }
+  handleSendMessage = () => {
+    const {sendMessage, value} = this.props
+
+    sendMessage({author: "User", message: value})
+  }
+
+  componentDidUpdate() {
+    this.handleScrollBottom()
+  }
 
   render() {
-    const { messages, value } = this.state
+    const { messages } = this.state
+    const { value } = this.props
 
     return (
       <>
@@ -74,7 +57,7 @@ export class MessageList extends Component {
         <StyledInput
           fullWidth={true}
           value={value}
-          onChange={this.handleChangeInput}
+          onChange={e => this.props.handleChangeValue(e.target.value)}
           onKeyPress={this.handlePressInput}
           placeholder="Написать сообщение..."
           endAdornment={
@@ -82,9 +65,7 @@ export class MessageList extends Component {
               {value && (
                 <Send
                   className={styles.icon}
-                  onClick={() => {
-                    this.sendMessage({ author: "User", value })
-                  }}
+                  onClick={this.handleSendMessage}
                 />
               )}
             </InputAdornment>
